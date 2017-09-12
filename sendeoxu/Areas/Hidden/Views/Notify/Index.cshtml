@@ -1,0 +1,66 @@
+﻿@using sendeoxu.Models
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Hidden/Views/Shared/_Layout1.cshtml";
+}
+
+<table class="table">
+    <tr>
+        <th>
+            title;
+        </th>
+        <th>
+            text;
+        </th>
+        <th>
+            date;
+        </th>
+        <th>
+            read_count;
+        </th>
+        <th>
+            kateqoriya_id;
+        </th>
+        <th>
+            allow;
+        </th>
+        <th>
+            User.fullname;
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (Source source in ViewBag.x)
+    {
+        <tr>
+            <td>
+                @source.title
+            </td>
+            <td>
+                @source.text
+            </td>
+            <td>
+                @source.date
+            </td>
+            <td>
+                @source.read_count
+            </td>
+            <td>
+                @source.kateqoriya_id
+            </td>
+            <td>
+                @source.allow
+            </td>
+            <td>
+                @source.user_id
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = source.id }) |
+                @Html.ActionLink("Delete", "Delete", new { id = source.id })
+            </td>
+        </tr>
+    }
+
+</table>
+
+

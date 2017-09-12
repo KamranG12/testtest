@@ -1,0 +1,75 @@
+﻿@using sendeoxu.Models
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<section class="content">
+    <div class="container">
+        <diw class="row">
+            <div class="col-md-12">
+                <div class="qaynaq">
+                    <div class="qaynaq-body">
+                        <h2>Qaynaq əlavə edin</h2>
+                        <form class="form-horizontal" method="post" action="
+                              @Url.Action("AddSource","Qaynaq")">
+                            <div class="qaynaq-info">
+                                <div class="row">
+                                    <div class="col-md-5">
+                                        <div class="qaynaq-categories">
+
+                                            <!--qaynaq kateqoriyası  -->
+                                            <label>Qaynaq kateqoriyasını seçin:</label>
+                                            <select class="form-control" id="searchcategory" >
+                                                @foreach (Category item in ViewBag.Categories)
+                                            {
+                                            <option value="@item.id">@item.kateqoriya_name</option>
+                                            }
+                                            </select>
+                                            <input type="hidden" name="kateqoriya_id" id="kateqoriya_id">
+                                            <input type="hidden" name="user_id" id="user_id" value="@Session["user_id"]">
+                                            <input type="hidden" name="date" id="date_now">
+                                            <!-- /input-group -->
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="qaynaq-head">
+                                            <!--qaynaq bawliqi  -->
+                                            <label>Qaynaq başlığı</label>
+                                            <div class="form-group">
+                                                <input type="text" name="title" class="form-control" aria-label="...">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <!--qaynaq mətni  -->
+                                        <div class="qaynaq-text">
+                                            <label>Qaynaq mətni</label>
+                                            <textarea class="ckeditor" id="editor1" name="text"></textarea>
+                                            @if (Session["source"] != null)
+                                            {
+                                                <div class="alert alert-danger">
+                                                    <p>@Session["source"]</p>
+                                                </div>
+                                                {
+                                                    Session["source"]=null;
+                                                }
+                                            }
+                                            <input class="btn btn-default" id="add_source" type="submit" value="Qaynaqı göndər">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            </form>
+                    </div>
+                </div>
+            </div>
+        </diw>
+    </div>
+</section>
+<script src="https://cdn.ckeditor.com/4.7.1/standard/ckeditor.js"></script>
+

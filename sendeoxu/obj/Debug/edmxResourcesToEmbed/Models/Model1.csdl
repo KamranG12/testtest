@@ -1,0 +1,168 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="FirstProjectModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Admin">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="username" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Category">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="kateqoriya_name" Type="String" MaxLength="30" FixedLength="true" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="RelCatAndSors" Relationship="Self.FK_RelKatAndTop_Kateqoriya" FromRole="Categories" ToRole="RelCatAndSor" />
+  </EntityType>
+  <EntityType Name="RelCatAndSor">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="kateqoriya_id" Type="Int32" Nullable="false" />
+    <Property Name="topic_id" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Category" Relationship="Self.FK_RelKatAndTop_Kateqoriya" FromRole="RelCatAndSor" ToRole="Categories" />
+    <NavigationProperty Name="Source" Relationship="Self.FK_RelKatAndTop_Topic" FromRole="RelCatAndSor" ToRole="Sources" />
+  </EntityType>
+  <EntityType Name="Source">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="title" Type="String" MaxLength="255" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="text" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="date" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="read_count" Type="Int32" Nullable="false" />
+    <Property Name="user_id" Type="Int32" Nullable="false" />
+    <Property Name="kateqoriya_id" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="RelCatAndSors" Relationship="Self.FK_RelKatAndTop_Topic" FromRole="Sources" ToRole="RelCatAndSor" />
+    <NavigationProperty Name="User" Relationship="FirstProjectModel.FK_Topic_Users" FromRole="Source" ToRole="User" />
+    <Property Name="allow" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="Reviews" Relationship="FirstProjectModel.FK_Review_Topic" FromRole="Source" ToRole="Review" />
+  </EntityType>
+  <Association Name="FK_RelKatAndTop_Kateqoriya">
+    <End Role="Categories" Type="Self.Category" Multiplicity="1" />
+    <End Role="RelCatAndSor" Type="Self.RelCatAndSor" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Categories">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="RelCatAndSor">
+        <PropertyRef Name="kateqoriya_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_RelKatAndTop_Topic">
+    <End Role="Sources" Type="Self.Source" Multiplicity="1" />
+    <End Role="RelCatAndSor" Type="Self.RelCatAndSor" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Sources">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="RelCatAndSor">
+        <PropertyRef Name="topic_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="FirstProjectEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Admins" EntityType="Self.Admin" />
+    <EntitySet Name="Categories" EntityType="Self.Category" />
+    <EntitySet Name="RelCatAndSors" EntityType="Self.RelCatAndSor" />
+    <EntitySet Name="Sources" EntityType="Self.Source" />
+    <AssociationSet Name="FK_RelKatAndTop_Kateqoriya" Association="Self.FK_RelKatAndTop_Kateqoriya">
+      <End Role="Categories" EntitySet="Categories" />
+      <End Role="RelCatAndSor" EntitySet="RelCatAndSors" />
+    </AssociationSet>
+    <AssociationSet Name="FK_RelKatAndTop_Topic" Association="Self.FK_RelKatAndTop_Topic">
+      <End Role="Sources" EntitySet="Sources" />
+      <End Role="RelCatAndSor" EntitySet="RelCatAndSors" />
+    </AssociationSet>
+    <EntitySet Name="sysdiagrams" EntityType="FirstProjectModel.sysdiagram" />
+    <EntitySet Name="Users" EntityType="FirstProjectModel.User" />
+    <AssociationSet Name="FK_Topic_Users" Association="FirstProjectModel.FK_Topic_Users">
+      <End Role="User" EntitySet="Users" />
+      <End Role="Source" EntitySet="Sources" />
+    </AssociationSet>
+    <EntitySet Name="Reviews" EntityType="FirstProjectModel.Review" />
+    <AssociationSet Name="FK_Review_Topic" Association="FirstProjectModel.FK_Review_Topic">
+      <End Role="Source" EntitySet="Sources" />
+      <End Role="Review" EntitySet="Reviews" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Review_Users" Association="FirstProjectModel.FK_Review_Users">
+      <End Role="User" EntitySet="Users" />
+      <End Role="Review" EntitySet="Reviews" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="sysdiagram">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="fullname" Type="String" Nullable="false" MaxLength="50" FixedLength="true" Unicode="true" />
+    <Property Name="email" Type="String" Nullable="false" MaxLength="100" FixedLength="true" Unicode="true" />
+    <Property Name="password" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Sources" Relationship="FirstProjectModel.FK_Topic_Users" FromRole="User" ToRole="Source" />
+    <Property Name="reytinq" Type="Int32" />
+    <NavigationProperty Name="Reviews" Relationship="FirstProjectModel.FK_Review_Users" FromRole="User" ToRole="Review" />
+  </EntityType>
+  <Association Name="FK_Topic_Users">
+    <End Type="FirstProjectModel.User" Role="User" Multiplicity="1" />
+    <End Type="FirstProjectModel.Source" Role="Source" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Source">
+        <PropertyRef Name="user_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="Review">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="liked" Type="Byte" Nullable="false" />
+    <Property Name="user_id" Type="Int32" Nullable="false" />
+    <Property Name="topic_id" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Source" Relationship="FirstProjectModel.FK_Review_Topic" FromRole="Review" ToRole="Source" />
+    <NavigationProperty Name="User" Relationship="FirstProjectModel.FK_Review_Users" FromRole="Review" ToRole="User" />
+    <Property Name="dislike" Type="Byte" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_Review_Topic">
+    <End Type="FirstProjectModel.Source" Role="Source" Multiplicity="1" />
+    <End Type="FirstProjectModel.Review" Role="Review" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Source">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Review">
+        <PropertyRef Name="topic_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Review_Users">
+    <End Type="FirstProjectModel.User" Role="User" Multiplicity="1" />
+    <End Type="FirstProjectModel.Review" Role="Review" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Review">
+        <PropertyRef Name="user_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

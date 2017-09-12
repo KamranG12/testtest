@@ -1,0 +1,78 @@
+﻿@model IEnumerable<sendeoxu.Models.Source>
+@using sendeoxu.Models;
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Hidden/Views/Shared/_Layout1.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.title)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.text)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.date)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.read_count)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.kateqoriya_id)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.allow)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.User.fullname)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.title)
+        </td>
+        <td>
+            @if (item.text.Length > 307)
+            {
+                @Html.Raw(HttpUtility.HtmlDecode(item.text.Substring(3, 303) + "..."))
+            }
+            else
+            {
+                @Html.Raw(HttpUtility.HtmlDecode(item.text))
+            }
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.date)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.read_count)
+        </td>
+        <td>
+
+            @Html.DisplayFor(modelItem => item.kateqoriya_id)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.allow)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.User.fullname)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.id })
+        </td>
+    </tr>
+}
+
+</table>

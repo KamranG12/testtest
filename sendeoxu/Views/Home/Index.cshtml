@@ -1,0 +1,180 @@
+﻿@using sendeoxu.Models
+@using PagedList;
+@using PagedList.Mvc;
+@model IPagedList<sendeoxu.Models.Source>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<section class="content">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3">
+                <!--categories-->
+                <div class="categories">
+                    <h1>kateqoriyalar</h1>
+                    <div class="seperator"></div>
+                    <ul>
+                        @foreach (Category ctg in ViewBag.category)
+                        {
+                            <li value="@ctg.id"><a href="@Url.Action("index","home",new {id=@ctg.id})">@ctg.kateqoriya_name</a></li>
+                        }
+                    </ul>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <!--qaynaqlar-->
+                <div class="section-center">
+                    <div class="last-source">
+                        <h5>Son əlavə olunan qaynaqlar</h5>
+                    </div>
+                    <div class="source-body">
+                        @foreach (var item in Model)
+                        {
+                            <div class="source">
+                                <div class="source-text-header">
+                                    <h3>@Html.DisplayFor(modelItem => item.title)</h3>
+                                    <ul>
+                                        <li class="source-person"><a href="#">@Html.DisplayFor(modelItem => item.User.fullname)</a></li>
+                                        <li class="source-date"><a href="#">@Html.DisplayFor(modelItem => item.date)</a></li>
+                                        <li class="source-file"><a href="#">
+                                            @foreach(Category ctg in ViewBag.catname)
+                                            {
+                                                if (ctg.id == item.kateqoriya_id)
+                                                {
+                                                    @ctg.kateqoriya_name
+                                                }
+                                            }
+                                         </a></li>
+                                    </ul>
+                                </div>
+                                <div class="text-body"> 
+                                    @if (item.text.Length > 307)
+                                    {
+                                            @Html.Raw(HttpUtility.HtmlDecode(item.text.Substring(3, 303)+"..."))
+                                    }
+                                    else
+                                    {
+                                        @Html.Raw(HttpUtility.HtmlDecode(item.text))
+                                    }
+
+                                    <a href="@Url.Action("index","read",new {id =@item.id})">Read More</a>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                    <div class="source-pagination">
+                        @Html.PagedListPager(Model, page => Url.Action("Index", new
+                   {
+                       page
+                   }))
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <!--user reting-->
+                <div class="user-reting">
+                    <h1>istifadəçi reytinqi</h1>
+                    <!-- <div class="seperator"></div>-->
+                    <div class="reting-slider">
+                        <div class="owl-carousel owl-theme">
+                            <div>
+                                <div class="reting-info">
+                                    <ul>
+                                        <li>
+                                            <a href="#" class="rtg-img">
+                                                <img src="" alt="">
+                                                <span>1</span>
+                                            </a>
+                                            <a href="#">Lorem Ipsum</a>
+                                            <span class="rtg-num">100 xal</span>
+                                        </li>
+                                        <li>
+                                            <a href="#" class="rtg-img">
+                                                <img src="" alt="">
+                                                <span>2</span>
+                                            </a>
+                                            <a href="#">Lorem Ipsum</a>
+                                            <span class="rtg-num">100 xal</span>
+                                        </li>
+                                        <li>
+                                            <a href="#" class="rtg-img">
+                                                <img src="" alt="">
+                                                <span>3</span>
+                                            </a>
+                                            <a href="#">Lorem Ipsum</a>
+                                            <span class="rtg-num">100 xal</span>
+                                        </li>
+                                        <li>
+                                            <a href="#" class="rtg-img">
+                                                <img src="" alt="">
+                                                <span>4</span>
+                                            </a>
+                                            <a href="#">Lorem Ipsum</a>
+                                            <span class="rtg-num">100 xal</span>
+                                        </li>
+                                        <li>
+                                            <a href="#" class="rtg-img">
+                                                <img src="" alt="">
+                                                <span>5</span>
+                                            </a>
+                                            <a href="#">Lorem Ipsum</a>
+                                            <span class="rtg-num">100 xal</span>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="reting-info">
+                                    <ul>
+                                        <li>
+                                            <a href="#" class="rtg-img">
+                                                <img src="" alt="">
+                                                <span>6</span>
+                                            </a>
+                                            <a href="#">Lorem Ipsum</a>
+                                            <span class="rtg-num">100 xal</span>
+                                        </li>
+                                        <li>
+                                            <a href="#" class="rtg-img">
+                                                <img src="" alt="">
+                                                <span>7</span>
+                                            </a>
+                                            <a href="#">Lorem Ipsum</a>
+                                            <span class="rtg-num">100 xal</span>
+                                        </li>
+                                        <li>
+                                            <a href="#" class="rtg-img">
+                                                <img src="" alt="">
+                                                <span>8</span>
+                                            </a>
+                                            <a href="#">Lorem Ipsum</a>
+                                            <span class="rtg-num">100 xal</span>
+                                        </li>
+                                        <li>
+                                            <a href="#" class="rtg-img">
+                                                <img src="" alt="">
+                                                <span>9</span>
+                                            </a>
+                                            <a href="#">Lorem Ipsum</a>
+                                            <span class="rtg-num">100 xal</span>
+                                        </li>
+                                        <li>
+                                            <a href="#" class="rtg-img">
+                                                <img src="" alt="">
+                                                <span>10</span>
+                                            </a>
+                                            <a href="#">Lorem Ipsum</a>
+                                            <span class="rtg-num">100 xal</span>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

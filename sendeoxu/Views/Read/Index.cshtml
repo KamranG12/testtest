@@ -1,0 +1,225 @@
+﻿@using sendeoxu.Models
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<section class="content">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-9">
+                <!--qaynaq oxuma-->
+                <div class="qaynaq-read">
+                    <div class="qaynaq-read-body">
+                        <h1>@ViewBag.qaynaq.title</h1>
+                        <ul>
+                            <li class="qrb-person">@ViewBag.username.fullname</li>
+                            <li class="qrb-date">@ViewBag.qaynaq.date</li>
+                            <li class="qrb-file">@ViewBag.category.kateqoriya_name</li>
+                        </ul>
+                    </div>
+                    <div class="qaynaq-text">
+                        <p>
+                            @Html.Raw(HttpUtility.HtmlDecode(@ViewBag.qaynaq.text))
+                        </p>
+                    </div>
+                    <div class="panel panel-default">
+                        <div class="panel-body">
+                            @if (Session["user"] != null)
+                            {
+                                <div class="qaynaq-read-like">
+                                        <button class="btn btn-default" id="likebtn" type="submit">
+                                            <i class="fa fa-thumbs-o-up" aria-hidden="true" id="iconlike"></i>
+                                            <span class="like-count" id="likecount">@ViewBag.like</span>
+                                        </button>
+                                    <button class="btn btn-default" id="dislikebtn" type="submit">
+                                        <i class="fa fa-thumbs-o-down" aria-hidden="true" id="icondislike"></i>
+                                        <span class="dislike-count" id="dislikecount">@ViewBag.dislike</span>
+                                    </button>
+                                </div>
+                            }
+                            else
+                            {
+                                <div class="qaynaq-read-like">
+                                    <button class="btn btn-default" id="likebtn" type="submit" disabled>
+                                        <i class="fa fa-thumbs-o-up" aria-hidden="true"></i>
+                                        <span class="like-count">@ViewBag.like</span>
+                                    </button>
+                                    <button class="btn btn-default" id="dislikebtn" type="submit" disabled>
+                                        <i class="fa fa-thumbs-o-down" aria-hidden="true"></i>
+                                        <span class="dislike-count">@ViewBag.dislike</span>
+                                    </button>
+                                </div>
+                            }
+
+                            <div class="qaynaq-read-count">
+                                <i class="fa fa-eye" aria-hidden="true"></i>
+                                <span class="read-count">@ViewBag.qaynaq.read_count</span>
+                            </div>
+                        </div>
+                    </div>
+                    <!--qaynaq şərhlər  -->
+                    <div id="disqus_thread"></div>
+                    <script>
+                    /**
+                    *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+                    *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+                    /*
+                    var disqus_config = function () {
+                    this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+                    this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+                    };
+                    */
+                    (function() { // DON'T EDIT BELOW THIS LINE
+                    var d = document, s = d.createElement('script');
+                    s.src = 'https://sendeoxu-az.disqus.com/embed.js';
+                    s.setAttribute('data-timestamp', +new Date());
+                    (d.head || d.body).appendChild(s);
+                    })();
+                    </script>
+                    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+                    <script id="dsq-count-scr" src="//sendeoxu-az.disqus.com/count.js" async></script>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <!-- Oxşar mövzuda qaynaqlar -->
+                <div class="similar-sources">
+                    <h3>Oxşar mövzuda qaynaqlar</h3>
+                    <div class="similar-sources-body">
+                        <div class="list-group">
+                            <a href="#" class="list-group-item">Lorem Ipsum Dolor Sit Amet</a>
+                            <a href="#" class="list-group-item">Lorem Ipsum Dolor Sit Amet</a>
+                            <a href="#" class="list-group-item">Lorem Ipsum Dolor Sit Amet</a>
+                            <a href="#" class="list-group-item">Lorem Ipsum Dolor Sit Amet</a>
+                            <a href="#" class="list-group-item">Lorem Ipsum Dolor Sit Amet</a>
+                            <a href="#" class="list-group-item">Lorem Ipsum Dolor Sit Amet</a>
+                            <a href="#" class="list-group-item">Lorem Ipsum Dolor Sit Amet</a>
+                            <a href="#" class="list-group-item">Lorem Ipsum Dolor Sit Amet</a>
+                            <a href="#" class="list-group-item">Lorem Ipsum Dolor Sit Amet</a>
+                        </div>
+                    </div>
+                </div>
+                <!--categories-->
+                <div class="categories">
+                    <h1>kateqoriyalar</h1>
+                    <div class="seperator"></div>
+                    <ul>
+                        <li><a href="categories/html.html">html</a></li>
+                        <li><a href="categories/css.html">css</a></li>
+                        <li><a href="categories/javascript.html">javascript</a></li>
+                        <li><a href="categories/jquery.html">jquery</a></li>
+                        <li><a href="categories/angular.html">angular</a></li>
+                        <li><a href="categories/sql-msql.html">sql / msql</a></li>
+                        <li><a href="categories/c++.html">c++</a></li>
+                        <li><a href="categories/csharp.html">c#</a></li>
+                        <li><a href="categories/asp.net.html">asp.net</a></li>
+                        <li><a href="categories/php.html">php</a></li>
+                        <li><a href="categories/java.html">java</a></li>
+                    </ul>
+                </div>
+                <!--user reting-->
+                <div class="user-reting">
+                    <h1>istifadəçi reytinqi</h1>
+                    <!-- <div class="seperator"></div>-->
+                    <div class="reting-slider">
+                        <div class="owl-carousel owl-theme">
+                            <div>
+                                <div class="reting-info">
+                                    <ul>
+                                        <li>
+                                            <a href="#" class="rtg-img">
+                                                <img src="" alt="">
+                                                <span>1</span>
+                                            </a>
+                                            <a href="#">Lorem Ipsum</a>
+                                            <span class="rtg-num">100 xal</span>
+                                        </li>
+                                        <li>
+                                            <a href="#" class="rtg-img">
+                                                <img src="" alt="">
+                                                <span>2</span>
+                                            </a>
+                                            <a href="#">Lorem Ipsum</a>
+                                            <span class="rtg-num">100 xal</span>
+                                        </li>
+                                        <li>
+                                            <a href="#" class="rtg-img">
+                                                <img src="" alt="">
+                                                <span>3</span>
+                                            </a>
+                                            <a href="#">Lorem Ipsum</a>
+                                            <span class="rtg-num">100 xal</span>
+                                        </li>
+                                        <li>
+                                            <a href="#" class="rtg-img">
+                                                <img src="" alt="">
+                                                <span>4</span>
+                                            </a>
+                                            <a href="#">Lorem Ipsum</a>
+                                            <span class="rtg-num">100 xal</span>
+                                        </li>
+                                        <li>
+                                            <a href="#" class="rtg-img">
+                                                <img src="" alt="">
+                                                <span>5</span>
+                                            </a>
+                                            <a href="#">Lorem Ipsum</a>
+                                            <span class="rtg-num">100 xal</span>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="reting-info">
+                                    <ul>
+                                        <li>
+                                            <a href="#" class="rtg-img">
+                                                <img src="" alt="">
+                                                <span>6</span>
+                                            </a>
+                                            <a href="#">Lorem Ipsum</a>
+                                            <span class="rtg-num">100 xal</span>
+                                        </li>
+                                        <li>
+                                            <a href="#" class="rtg-img">
+                                                <img src="" alt="">
+                                                <span>7</span>
+                                            </a>
+                                            <a href="#">Lorem Ipsum</a>
+                                            <span class="rtg-num">100 xal</span>
+                                        </li>
+                                        <li>
+                                            <a href="#" class="rtg-img">
+                                                <img src="" alt="">
+                                                <span>8</span>
+                                            </a>
+                                            <a href="#">Lorem Ipsum</a>
+                                            <span class="rtg-num">100 xal</span>
+                                        </li>
+                                        <li>
+                                            <a href="#" class="rtg-img">
+                                                <img src="" alt="">
+                                                <span>9</span>
+                                            </a>
+                                            <a href="#">Lorem Ipsum</a>
+                                            <span class="rtg-num">100 xal</span>
+                                        </li>
+                                        <li>
+                                            <a href="#" class="rtg-img">
+                                                <img src="" alt="">
+                                                <span>10</span>
+                                            </a>
+                                            <a href="#">Lorem Ipsum</a>
+                                            <span class="rtg-num">100 xal</span>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
