@@ -104,7 +104,7 @@ header .header-upper .modal {
         text-decoration: none;
         cursor: pointer; }
 header .header-upper .profil {
-  width: 100px;
+  /*width: 100px;*/
   float: right;
   margin-top: 25px; }
   @media screen and (max-width: 320px) {
@@ -159,6 +159,40 @@ header .header-upper #profil-form {
         background-color: #28395E;
         border-color: #28395E;
         color: #fff; }
+
+
+   /*search button new*/
+#custom-search-input {
+    padding: 3px;
+    border: solid 1px #E4E4E4;
+    border-radius: 6px;
+    background-color: #fff;
+}
+
+    #custom-search-input input {
+        border: 0;
+        box-shadow: none;
+    }
+
+    #custom-search-input button {
+        margin: 2px 0 0 0;
+        background: none;
+        box-shadow: none;
+        border: 0;
+        color: #666666;
+        padding: 0 8px 0 10px;
+        border-left: solid 1px #ccc;
+    }
+
+        #custom-search-input button:hover {
+            border: 0;
+            box-shadow: none;
+            border-left: solid 1px #ccc;
+        }
+
+    #custom-search-input .glyphicon-search {
+        font-size: 23px;
+    }
 
 .home {
   background: #ffae11;
@@ -462,9 +496,11 @@ footer {
   border: 1px solid #E8E8E8; }
   .qaynaq .qaynaq-body .qaynaq-info {
     margin: 20px 0; }
-    .qaynaq .qaynaq-body .qaynaq-info .qaynaq-categories {
-      margin: 20px 0; }
-    .qaynaq .qaynaq-body .qaynaq-info .qaynaq-text .btn-default {
+
+.qaynaq .qaynaq-body .qaynaq-info .qaynaq-categories {
+    margin: 20px 0;
+}
+    .qaynaq .qaynaq-body .qaynaq-info.form-horizontal .form-group .qaynaq-text .btn-default {
       margin-top: 15px; }
 
 .qaynaq-read {

@@ -24,6 +24,31 @@ namespace sendeoxu.Controllers
                 ViewBag.like = db.Reviews.Where(r => r.liked == 1 && r.topic_id == idcat.id).Count();
                 ViewBag.dislike = db.Reviews.Where(r => r.dislike == 1 && r.topic_id == idcat.id).Count();
                 this.artir(idcat);
+                if (Session["user_id"] != null)
+                {
+                    int user_id = Convert.ToInt32(Session["user_id"].ToString());
+                    Review likeordis = db.Reviews.FirstOrDefault(r => r.topic_id == id && r.user_id == user_id);
+                    if (likeordis != null)
+                    {
+                        if (likeordis.liked == 1)
+                        {
+                            ViewBag.likedis = 1;
+                        }
+                        else if (likeordis.dislike == 1)
+                        {
+                            ViewBag.likedis = 0;
+                        }
+                        else
+                        {
+                            ViewBag.likedis = 2;
+                        }
+                    }
+                    else
+                    {
+                        ViewBag.likedis = 2;
+                    }
+                }
+                
                 return View();
             }
             else

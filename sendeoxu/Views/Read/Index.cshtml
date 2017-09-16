@@ -27,16 +27,45 @@
                         <div class="panel-body">
                             @if (Session["user"] != null)
                             {
-                                <div class="qaynaq-read-like">
+                                if (ViewBag.likedis == 1)
+                                {
+                                    <div class="qaynaq-read-like">
+                                        <button class="btn btn-default" id="likebtn" type="submit" style="background-color:#ccc">
+                                            <i class="fa fa-thumbs-o-up" aria-hidden="true" id="iconlike"></i>
+                                            <span class="like-count" id="likecount">@ViewBag.like</span>
+                                        </button>
+                                        <button class="btn btn-default" id="dislikebtn" type="submit">
+                                            <i class="fa fa-thumbs-o-down" aria-hidden="true" id="icondislike"></i>
+                                            <span class="dislike-count" id="dislikecount">@ViewBag.dislike</span>
+                                        </button>
+                                    </div>
+                                }
+                                else if (ViewBag.likedis == 0)
+                                {
+                                    <div class="qaynaq-read-like">
                                         <button class="btn btn-default" id="likebtn" type="submit">
                                             <i class="fa fa-thumbs-o-up" aria-hidden="true" id="iconlike"></i>
                                             <span class="like-count" id="likecount">@ViewBag.like</span>
                                         </button>
-                                    <button class="btn btn-default" id="dislikebtn" type="submit">
-                                        <i class="fa fa-thumbs-o-down" aria-hidden="true" id="icondislike"></i>
-                                        <span class="dislike-count" id="dislikecount">@ViewBag.dislike</span>
-                                    </button>
-                                </div>
+                                        <button class="btn btn-default" id="dislikebtn" type="submit" style="background-color:#ccc">
+                                            <i class="fa fa-thumbs-o-down" aria-hidden="true" id="icondislike"></i>
+                                            <span class="dislike-count" id="dislikecount">@ViewBag.dislike</span>
+                                        </button>
+                                    </div>
+                                }
+                                else
+                                {
+                                    <div class="qaynaq-read-like">
+                                        <button class="btn btn-default" id="likebtn" type="submit">
+                                            <i class="fa fa-thumbs-o-up" aria-hidden="true" id="iconlike"></i>
+                                            <span class="like-count" id="likecount">@ViewBag.like</span>
+                                        </button>
+                                        <button class="btn btn-default" id="dislikebtn" type="submit">
+                                            <i class="fa fa-thumbs-o-down" aria-hidden="true" id="icondislike"></i>
+                                            <span class="dislike-count" id="dislikecount">@ViewBag.dislike</span>
+                                        </button>
+                                    </div>
+                                }
                             }
                             else
                             {

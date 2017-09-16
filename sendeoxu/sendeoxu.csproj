@@ -172,6 +172,7 @@
     <Compile Include="Controllers\QaynaqController.cs" />
     <Compile Include="Controllers\ReadController.cs" />
     <Compile Include="Controllers\RegistrationController.cs" />
+    <Compile Include="Controllers\SearchController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -6993,7 +6994,7 @@
     <Content Include="Content\categories\php.html" />
     <Content Include="Content\categories\sql-msql.html" />
     <Content Include="Content\css\bootstrap.css" />
-    <Content Include="Content\css\font-awesome.css" />
+    <Content Include="Content\categories\font-awesome.css" />
     <Content Include="Content\css\fonts.css" />
     <Content Include="Content\css\mixin.css" />
     <Content Include="Content\css\owl.carousel.min.css" />
@@ -7734,6 +7735,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Search\" />
     <Folder Include="Views\User\" />
   </ItemGroup>
   <ItemGroup>

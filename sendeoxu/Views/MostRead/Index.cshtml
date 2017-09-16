@@ -1,9 +1,8 @@
-﻿
+﻿@using sendeoxu.Models
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
 <section class="content">
     <div class="container">
         <div class="row">
@@ -13,17 +12,10 @@
                     <h1>kateqoriyalar</h1>
                     <div class="seperator"></div>
                     <ul>
-                        <li><a href="categories/html.html">html</a></li>
-                        <li><a href="categories/css.html">css</a></li>
-                        <li><a href="categories/javascript.html">javascript</a></li>
-                        <li><a href="categories/jquery.html">jquery</a></li>
-                        <li><a href="categories/angular.html">angular</a></li>
-                        <li><a href="categories/sql-msql.html">sql / msql</a></li>
-                        <li><a href="categories/c++.html">c++</a></li>
-                        <li><a href="categories/csharp.html">c#</a></li>
-                        <li><a href="categories/asp.net.html">asp.net</a></li>
-                        <li><a href="categories/php.html">php</a></li>
-                        <li><a href="categories/java.html">java</a></li>
+                        @foreach (Category ctg in ViewBag.category)
+                        {
+                            <li value="@ctg.id"><a href="@Url.Action("index","home",new {id=@ctg.id})">@ctg.kateqoriya_name</a></li>
+                        }
                     </ul>
                 </div>
             </div>
@@ -382,3 +374,5 @@
         </div>
     </div>
 </section>
+                   
+ 

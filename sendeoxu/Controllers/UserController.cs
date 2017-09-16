@@ -22,7 +22,7 @@ namespace sendeoxu.Controllers
                 if (user!=null)
                 {
                     Session["user"] = true;
-                    Session["user_name"] = user.fullname;
+                    Session["user_name"] = user.fullname.Trim();
                     Session["user_id"] = user.id;
                     var response = true;
                     return Json(response, JsonRequestBehavior.AllowGet);
@@ -55,7 +55,7 @@ namespace sendeoxu.Controllers
                     db.Users.Add(user);
                     db.SaveChanges();
                     Session["user"] = true;
-                    Session["user_name"] = user.fullname;
+                    Session["user_name"] = user.fullname.Trim();
                     Session["user_id"] = user.id;
                     var response = true;
                     return Json(response, JsonRequestBehavior.AllowGet);

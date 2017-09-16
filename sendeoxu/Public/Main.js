@@ -24,6 +24,37 @@
         })
     })
 
+    $("#searchclcbtn").click(function () {
+        $("#srcfromdata").empty();
+        $("#search").val("");
+    })
+
+    $("#search").keyup(function () {
+        url = "/search/searchsource/";
+        searchval = $("#search").val();
+        $("#srcfromdata").empty();
+        if (searchval != "") {
+            $.ajax({
+                url: url,
+                type: "POST",
+                data: {
+                    search: searchval
+                },
+                error: function () {
+                    console.log("error");
+                },
+                success: function (result) {
+                    //console.log(result)
+                    for (var i = 0; i < result.length; i++) {
+                        $("#srcfromdata").append('<li class="list-group-item"><a href="../../read/index/' + result[i].sourceid + '">' + result[i].sourcetitle + '</a></li>')
+                        // console.log(result[i].sourceid + " " + result[i].sourcetitle)
+                    }
+
+                }
+            })
+        }
+    })
+
     $("#dislikebtn").click(function () {
         event.preventDefault();
         url = "/read/dislike/";
@@ -139,5 +170,19 @@
     var time = d.getFullYear() + "-" + month + "-" + d.getDate() + " " + d.getHours() + ":" + d.getMinutes() + ":" + d.getSeconds();
     $("#date_now").val(time);
 
-    
+
+    //$("#search").keyup(function () {
+    //    var data = $(this).val();
+    //    $(".datasearch").each(function () {
+
+    //        var search = $(this).attr("data-search").toLowerCase();
+    //        console.log(search)
+    //        if (search.indexOf(data) >= 0) {
+    //            console.log(search.indexOf(data))
+    //            $(this).parent().parent().show();
+    //        } else {
+    //            $(this).parent().parent().hide();
+    //        }
+    //    })
+    //})
 })

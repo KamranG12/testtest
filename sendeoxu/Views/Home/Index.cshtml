@@ -34,7 +34,7 @@
                         {
                             <div class="source">
                                 <div class="source-text-header">
-                                    <h3>@Html.DisplayFor(modelItem => item.title)</h3>
+                                    <h3 class="datasearch" data-search="@Html.DisplayFor(modelItem => item.title)">@Html.DisplayFor(modelItem => item.title)</h3>
                                     <ul>
                                         <li class="source-person"><a href="#">@Html.DisplayFor(modelItem => item.User.fullname)</a></li>
                                         <li class="source-date"><a href="#">@Html.DisplayFor(modelItem => item.date)</a></li>
