@@ -17,8 +17,15 @@ namespace sendeoxu.Areas.Hidden.Controllers
         // GET: Hidden/Reviews
         public ActionResult Index()
         {
-            var reviews = db.Reviews.Include(r => r.Source).Include(r => r.User);
+            if (Session["admin"] != null)
+            {
+                var reviews = db.Reviews.Include(r => r.Source).Include(r => r.User);
             return View(reviews.ToList());
+            }
+            else
+            {
+                return RedirectToAction("login", "admin");
+            }
         }
 
         // GET: Hidden/Reviews/Details/5
@@ -33,15 +40,29 @@ namespace sendeoxu.Areas.Hidden.Controllers
             {
                 return HttpNotFound();
             }
-            return View(review);
+            if (Session["admin"] != null)
+            {
+                return View(review);
+            }
+            else
+            {
+                return RedirectToAction("login", "admin");
+            }
         }
 
         // GET: Hidden/Reviews/Create
         public ActionResult Create()
         {
-            ViewBag.topic_id = new SelectList(db.Sources, "id", "title");
+            if (Session["admin"] != null)
+            {
+                ViewBag.topic_id = new SelectList(db.Sources, "id", "title");
             ViewBag.user_id = new SelectList(db.Users, "id", "fullname");
             return View();
+            }
+            else
+            {
+                return RedirectToAction("login", "admin");
+            }
         }
 
         // POST: Hidden/Reviews/Create
@@ -75,9 +96,16 @@ namespace sendeoxu.Areas.Hidden.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.topic_id = new SelectList(db.Sources, "id", "title", review.topic_id);
+            if (Session["admin"] != null)
+            {
+                ViewBag.topic_id = new SelectList(db.Sources, "id", "title", review.topic_id);
             ViewBag.user_id = new SelectList(db.Users, "id", "fullname", review.user_id);
             return View(review);
+            }
+            else
+            {
+                return RedirectToAction("login", "admin");
+            }
         }
 
         // POST: Hidden/Reviews/Edit/5
@@ -110,7 +138,14 @@ namespace sendeoxu.Areas.Hidden.Controllers
             {
                 return HttpNotFound();
             }
-            return View(review);
+            if (Session["admin"] != null)
+            {
+                return View(review);
+            }
+            else
+            {
+                return RedirectToAction("login", "admin");
+            }
         }
 
         // POST: Hidden/Reviews/Delete/5

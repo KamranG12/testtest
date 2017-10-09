@@ -37,7 +37,7 @@
                 @source.title
             </td>
             <td>
-                @source.text
+                @Html.Raw(HttpUtility.HtmlDecode(source.text))
             </td>
             <td>
                 @source.date

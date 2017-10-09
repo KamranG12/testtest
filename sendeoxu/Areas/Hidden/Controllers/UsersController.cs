@@ -17,7 +17,14 @@ namespace sendeoxu.Areas.Hidden.Controllers
         // GET: Hidden/Users
         public ActionResult Index()
         {
-            return View(db.Users.ToList());
+            if (Session["admin"] != null)
+            {
+                return View(db.Users.ToList());
+            }
+            else
+            {
+                return RedirectToAction("login", "admin");
+            }
         }
 
         // GET: Hidden/Users/Details/5
@@ -32,13 +39,27 @@ namespace sendeoxu.Areas.Hidden.Controllers
             {
                 return HttpNotFound();
             }
-            return View(user);
-        }
+                if (Session["admin"] != null)
+                {
+                    return View(user);
+                }
+                else
+                {
+                    return RedirectToAction("login", "admin");
+                }
+            }
 
         // GET: Hidden/Users/Create
         public ActionResult Create()
         {
-            return View();
+            if (Session["admin"] != null)
+            {
+                return View();
+            }
+            else
+            {
+                return RedirectToAction("login", "admin");
+            }
         }
 
         // POST: Hidden/Users/Create
@@ -70,7 +91,14 @@ namespace sendeoxu.Areas.Hidden.Controllers
             {
                 return HttpNotFound();
             }
-            return View(user);
+            if (Session["admin"] != null)
+            {
+                return View(user);
+            }
+            else
+            {
+                return RedirectToAction("login", "admin");
+            }
         }
 
         // POST: Hidden/Users/Edit/5
@@ -101,7 +129,14 @@ namespace sendeoxu.Areas.Hidden.Controllers
             {
                 return HttpNotFound();
             }
-            return View(user);
+            if (Session["admin"] != null)
+            {
+                return View(user);
+            }
+            else
+            {
+                return RedirectToAction("login", "admin");
+            }
         }
 
         // POST: Hidden/Users/Delete/5

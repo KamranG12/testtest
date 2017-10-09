@@ -131,7 +131,7 @@
                     password: password
                 },
                 error: function (result) {
-                    console.log("eroro");
+                    console.log("error");
                 },
                 success: function (result) {
                     if (result == true) {

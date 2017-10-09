@@ -25,247 +25,47 @@
                     <div class="last-source">
                         <h5>Ən çox oxunan onluq</h5>
                     </div>
-
-                    <div class="most-read-ten">
-                        <div class="mostTen-body">
-                            <div class="mostTen">
-                                <div class="mrt-number">
-                                    1
-                                </div>
-                                <div class="mostTen-text-header">
-                                    <h3>Lorem Ipsum Dolor Sit Amet</h3>
-                                    <ul>
-                                        <li class="mostTen-person"><a href="#">Polad İbrahimov</a></li>
-                                        <li class="mostTen-date"><a href="#">İyul 15, 2017</a></li>
-                                        <li class="mostTen-file"><a href="#">HTML</a></li>
-                                    </ul>
-                                </div>
-                                <div class="mostTen-text-body">
-                                    <p>
-                                        Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled
-                                        it to make a type specimen book...
-                                    </p>
-                                    <a href="#">Read More</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="most-read-ten">
-                        <div class="mostTen-body">
-                            <div class="mostTen">
-                                <div class="mrt-number">
-                                    2
-                                </div>
-                                <div class="mostTen-text-header">
-                                    <h3>Lorem Ipsum Dolor Sit Amet</h3>
-                                    <ul>
-                                        <li class="mostTen-person"><a href="#">Polad İbrahimov</a></li>
-                                        <li class="mostTen-date"><a href="#">İyul 15, 2017</a></li>
-                                        <li class="mostTen-file"><a href="#">HTML</a></li>
-                                    </ul>
-                                </div>
-                                <div class="mostTen-text-body">
-                                    <p>
-                                        Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled
-                                        it to make a type specimen book...
-                                    </p>
-                                    <a href="#">Read More</a>
+                    @{var count = 0;}
+                    @foreach (Source src in ViewBag.mostread)
+                    {
+                        count++;
+                        <div class="most-read-ten">
+                            <div class="mostTen-body">
+                                <div class="mostTen">
+                                    <div class="mrt-number">
+                                        @count
+                                    </div>
+                                    <div class="mostTen-text-header">
+                                        <h3>@src.title</h3>
+                                        <ul>
+                                            <li class="mostTen-person">@src.User.fullname</li>
+                                            <li class="mostTen-date">@src.date</li>
+                                            <li class="mostTen-file">
+                                                @foreach (Category ctg in ViewBag.catname)
+                                                {
+                                                    if (ctg.id == src.kateqoriya_id)
+                                                    {
+                                                        @ctg.kateqoriya_name
+                                                    }
+                                                }
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div class="mostTen-text-body">
+                                        @if (src.text.Length > 307)
+                                        {
+                                            @Html.Raw(HttpUtility.HtmlDecode(src.text.Substring(3, 303) + "..."))
+                                        }
+                                        else
+                                        {
+                                            @Html.Raw(HttpUtility.HtmlDecode(src.text))
+                                        }
+                                        <a href="@Url.Action("index","read",new {id =src.id})">Ətraflı</a>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="most-read-ten">
-                        <div class="mostTen-body">
-                            <div class="mostTen">
-                                <div class="mrt-number">
-                                    3
-                                </div>
-                                <div class="mostTen-text-header">
-                                    <h3>Lorem Ipsum Dolor Sit Amet</h3>
-                                    <ul>
-                                        <li class="mostTen-person"><a href="#">Polad İbrahimov</a></li>
-                                        <li class="mostTen-date"><a href="#">İyul 15, 2017</a></li>
-                                        <li class="mostTen-file"><a href="#">HTML</a></li>
-                                    </ul>
-                                </div>
-                                <div class="mostTen-text-body">
-                                    <p>
-                                        Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled
-                                        it to make a type specimen book...
-                                    </p>
-                                    <a href="#">Read More</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="most-read-ten">
-                        <div class="mostTen-body">
-                            <div class="mostTen">
-                                <div class="mrt-number">
-                                    4
-                                </div>
-                                <div class="mostTen-text-header">
-                                    <h3>Lorem Ipsum Dolor Sit Amet</h3>
-                                    <ul>
-                                        <li class="mostTen-person"><a href="#">Polad İbrahimov</a></li>
-                                        <li class="mostTen-date"><a href="#">İyul 15, 2017</a></li>
-                                        <li class="mostTen-file"><a href="#">HTML</a></li>
-                                    </ul>
-                                </div>
-                                <div class="mostTen-text-body">
-                                    <p>
-                                        Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled
-                                        it to make a type specimen book...
-                                    </p>
-                                    <a href="#">Read More</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="most-read-ten">
-                        <div class="mostTen-body">
-                            <div class="mostTen">
-                                <div class="mrt-number">
-                                    5
-                                </div>
-                                <div class="mostTen-text-header">
-                                    <h3>Lorem Ipsum Dolor Sit Amet</h3>
-                                    <ul>
-                                        <li class="mostTen-person"><a href="#">Polad İbrahimov</a></li>
-                                        <li class="mostTen-date"><a href="#">İyul 15, 2017</a></li>
-                                        <li class="mostTen-file"><a href="#">HTML</a></li>
-                                    </ul>
-                                </div>
-                                <div class="mostTen-text-body">
-                                    <p>
-                                        Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled
-                                        it to make a type specimen book...
-                                    </p>
-                                    <a href="#">Read More</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="most-read-ten">
-                        <div class="mostTen-body">
-                            <div class="mostTen">
-                                <div class="mrt-number">
-                                    6
-                                </div>
-                                <div class="mostTen-text-header">
-                                    <h3>Lorem Ipsum Dolor Sit Amet</h3>
-                                    <ul>
-                                        <li class="mostTen-person"><a href="#">Polad İbrahimov</a></li>
-                                        <li class="mostTen-date"><a href="#">İyul 15, 2017</a></li>
-                                        <li class="mostTen-file"><a href="#">HTML</a></li>
-                                    </ul>
-                                </div>
-                                <div class="mostTen-text-body">
-                                    <p>
-                                        Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled
-                                        it to make a type specimen book...
-                                    </p>
-                                    <a href="#">Read More</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="most-read-ten">
-                        <div class="mostTen-body">
-                            <div class="mostTen">
-                                <div class="mrt-number">
-                                    7
-                                </div>
-                                <div class="mostTen-text-header">
-                                    <h3>Lorem Ipsum Dolor Sit Amet</h3>
-                                    <ul>
-                                        <li class="mostTen-person"><a href="#">Polad İbrahimov</a></li>
-                                        <li class="mostTen-date"><a href="#">İyul 15, 2017</a></li>
-                                        <li class="mostTen-file"><a href="#">HTML</a></li>
-                                    </ul>
-                                </div>
-                                <div class="mostTen-text-body">
-                                    <p>
-                                        Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled
-                                        it to make a type specimen book...
-                                    </p>
-                                    <a href="#">Read More</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="most-read-ten">
-                        <div class="mostTen-body">
-                            <div class="mostTen">
-                                <div class="mrt-number">
-                                    8
-                                </div>
-                                <div class="mostTen-text-header">
-                                    <h3>Lorem Ipsum Dolor Sit Amet</h3>
-                                    <ul>
-                                        <li class="mostTen-person"><a href="#">Polad İbrahimov</a></li>
-                                        <li class="mostTen-date"><a href="#">İyul 15, 2017</a></li>
-                                        <li class="mostTen-file"><a href="#">HTML</a></li>
-                                    </ul>
-                                </div>
-                                <div class="mostTen-text-body">
-                                    <p>
-                                        Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled
-                                        it to make a type specimen book...
-                                    </p>
-                                    <a href="#">Read More</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="most-read-ten">
-                        <div class="mostTen-body">
-                            <div class="mostTen">
-                                <div class="mrt-number">
-                                    9
-                                </div>
-                                <div class="mostTen-text-header">
-                                    <h3>Lorem Ipsum Dolor Sit Amet</h3>
-                                    <ul>
-                                        <li class="mostTen-person"><a href="#">Polad İbrahimov</a></li>
-                                        <li class="mostTen-date"><a href="#">İyul 15, 2017</a></li>
-                                        <li class="mostTen-file"><a href="#">HTML</a></li>
-                                    </ul>
-                                </div>
-                                <div class="mostTen-text-body">
-                                    <p>
-                                        Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled
-                                        it to make a type specimen book...
-                                    </p>
-                                    <a href="#">Read More</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="most-read-ten">
-                        <div class="mostTen-body">
-                            <div class="mostTen">
-                                <div class="mrt-number">
-                                    10
-                                </div>
-                                <div class="mostTen-text-header">
-                                    <h3>Lorem Ipsum Dolor Sit Amet</h3>
-                                    <ul>
-                                        <li class="mostTen-person"><a href="#">Polad İbrahimov</a></li>
-                                        <li class="mostTen-date"><a href="#">İyul 15, 2017</a></li>
-                                        <li class="mostTen-file"><a href="#">HTML</a></li>
-                                    </ul>
-                                </div>
-                                <div class="mostTen-text-body">
-                                    <p>
-                                        Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled
-                                        it to make a type specimen book...
-                                    </p>
-                                    <a href="#">Read More</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    }
                 </div>
             </div>
             <div class="col-md-3">
@@ -278,92 +78,50 @@
                             <div>
                                 <div class="reting-info">
                                     <ul>
-                                        <li>
-                                            <a href="#" class="rtg-img">
-                                                <img src="" alt="">
-                                                <span>1</span>
-                                            </a>
-                                            <a href="#">Lorem Ipsum</a>
-                                            <span class="rtg-num">100 xal</span>
-                                        </li>
-                                        <li>
-                                            <a href="#" class="rtg-img">
-                                                <img src="" alt="">
-                                                <span>2</span>
-                                            </a>
-                                            <a href="#">Lorem Ipsum</a>
-                                            <span class="rtg-num">100 xal</span>
-                                        </li>
-                                        <li>
-                                            <a href="#" class="rtg-img">
-                                                <img src="" alt="">
-                                                <span>3</span>
-                                            </a>
-                                            <a href="#">Lorem Ipsum</a>
-                                            <span class="rtg-num">100 xal</span>
-                                        </li>
-                                        <li>
-                                            <a href="#" class="rtg-img">
-                                                <img src="" alt="">
-                                                <span>4</span>
-                                            </a>
-                                            <a href="#">Lorem Ipsum</a>
-                                            <span class="rtg-num">100 xal</span>
-                                        </li>
-                                        <li>
-                                            <a href="#" class="rtg-img">
-                                                <img src="" alt="">
-                                                <span>5</span>
-                                            </a>
-                                            <a href="#">Lorem Ipsum</a>
-                                            <span class="rtg-num">100 xal</span>
-                                        </li>
+                                        @{var count2 = 0;}
+                                        @foreach (User usr in ViewBag.user_reytinq)
+                                        {
+                                            count2++;
+                                            if (count2 <= 5)
+                                            {
+                                                <li>
+                                                    <div class="rtg-img">
+                                                        <div class="rtg-img-n">
+                                                            <span>@count2</span>
+                                                        </div>
+
+                                                    </div>
+                                                    <a class="rtg-name">@usr.fullname</a>
+                                                    <span class="rtg-num">@usr.reytinq xal</span>
+                                                </li>
+                                            }
+
+                                        }
                                     </ul>
                                 </div>
                             </div>
                             <div>
                                 <div class="reting-info">
                                     <ul>
-                                        <li>
-                                            <a href="#" class="rtg-img">
-                                                <img src="" alt="">
-                                                <span>6</span>
-                                            </a>
-                                            <a href="#">Lorem Ipsum</a>
-                                            <span class="rtg-num">100 xal</span>
-                                        </li>
-                                        <li>
-                                            <a href="#" class="rtg-img">
-                                                <img src="" alt="">
-                                                <span>7</span>
-                                            </a>
-                                            <a href="#">Lorem Ipsum</a>
-                                            <span class="rtg-num">100 xal</span>
-                                        </li>
-                                        <li>
-                                            <a href="#" class="rtg-img">
-                                                <img src="" alt="">
-                                                <span>8</span>
-                                            </a>
-                                            <a href="#">Lorem Ipsum</a>
-                                            <span class="rtg-num">100 xal</span>
-                                        </li>
-                                        <li>
-                                            <a href="#" class="rtg-img">
-                                                <img src="" alt="">
-                                                <span>9</span>
-                                            </a>
-                                            <a href="#">Lorem Ipsum</a>
-                                            <span class="rtg-num">100 xal</span>
-                                        </li>
-                                        <li>
-                                            <a href="#" class="rtg-img">
-                                                <img src="" alt="">
-                                                <span>10</span>
-                                            </a>
-                                            <a href="#">Lorem Ipsum</a>
-                                            <span class="rtg-num">100 xal</span>
-                                        </li>
+                                        @{var count6 = 0;}
+                                        @foreach (User usr in ViewBag.user_reytinq)
+                                        {
+                                            count6++;
+                                            if (count6 >= 6)
+                                            {
+                                                <li>
+                                                    <div class="rtg-img">
+                                                        <div class="rtg-img-n">
+                                                            <span>@count6</span>
+                                                        </div>
+
+                                                    </div>
+                                                    <a class="rtg-name">@usr.fullname</a>
+                                                    <span class="rtg-num">@usr.reytinq xal</span>
+                                                </li>
+                                            }
+
+                                        }
                                     </ul>
                                 </div>
                             </div>

@@ -10,7 +10,62 @@
 <section class="content">
     <div class="container">
         <div class="row">
-            <div class="col-md-3">
+            
+            <div class="col-md-9">
+                <!--qaynaqlar-->
+                <div class="section-center">
+                    <div class="last-source">
+                        <h5>Son əlavə olunan qaynaqlar</h5>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="source-body">
+                                @foreach (var item in Model)
+                                {
+                                    <div class="source">
+                                        <div class="source-text-header">
+                                            <h3 class="datasearch" data-search="@Html.DisplayFor(modelItem => item.title)">@Html.DisplayFor(modelItem => item.title)</h3>
+                                            <ul>
+                                                <li class="source-person">@Html.DisplayFor(modelItem => item.User.fullname)</li>
+                                                <li class="source-date">@Html.DisplayFor(modelItem => item.date)</li>
+                                                <li class="source-file">
+                                                    @foreach (Category ctg in ViewBag.catname)
+                                                    {
+                                                        if (ctg.id == item.kateqoriya_id)
+                                                        {
+                                                            @ctg.kateqoriya_name
+                                                        }
+                                                    }
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        <div class="text-body">
+                                            @if (item.text.Length > 307)
+                                            {
+                                                @Html.Raw(HttpUtility.HtmlDecode(item.text.Substring(3, 303) + "..."))
+                                            }
+                                            else
+                                            {
+                                                @Html.Raw(HttpUtility.HtmlDecode(item.text))
+                                            }
+
+                                            <a href="@Url.Action("index","read",new {id =@item.id})">Ətraflı</a>
+                                        </div>
+                                    </div>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="source-pagination">
+                        @Html.PagedListPager(Model, page => Url.Action("Index", new
+                   {
+                       page
+                   }))
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-12 col-md-3">
                 <!--categories-->
                 <div class="categories">
                     <h1>kateqoriyalar</h1>
@@ -22,57 +77,7 @@
                         }
                     </ul>
                 </div>
-            </div>
-            <div class="col-md-6">
-                <!--qaynaqlar-->
-                <div class="section-center">
-                    <div class="last-source">
-                        <h5>Son əlavə olunan qaynaqlar</h5>
-                    </div>
-                    <div class="source-body">
-                        @foreach (var item in Model)
-                        {
-                            <div class="source">
-                                <div class="source-text-header">
-                                    <h3 class="datasearch" data-search="@Html.DisplayFor(modelItem => item.title)">@Html.DisplayFor(modelItem => item.title)</h3>
-                                    <ul>
-                                        <li class="source-person"><a href="#">@Html.DisplayFor(modelItem => item.User.fullname)</a></li>
-                                        <li class="source-date"><a href="#">@Html.DisplayFor(modelItem => item.date)</a></li>
-                                        <li class="source-file"><a href="#">
-                                            @foreach(Category ctg in ViewBag.catname)
-                                            {
-                                                if (ctg.id == item.kateqoriya_id)
-                                                {
-                                                    @ctg.kateqoriya_name
-                                                }
-                                            }
-                                         </a></li>
-                                    </ul>
-                                </div>
-                                <div class="text-body"> 
-                                    @if (item.text.Length > 307)
-                                    {
-                                            @Html.Raw(HttpUtility.HtmlDecode(item.text.Substring(3, 303)+"..."))
-                                    }
-                                    else
-                                    {
-                                        @Html.Raw(HttpUtility.HtmlDecode(item.text))
-                                    }
 
-                                    <a href="@Url.Action("index","read",new {id =@item.id})">Read More</a>
-                                </div>
-                            </div>
-                        }
-                    </div>
-                    <div class="source-pagination">
-                        @Html.PagedListPager(Model, page => Url.Action("Index", new
-                   {
-                       page
-                   }))
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-3">
                 <!--user reting-->
                 <div class="user-reting">
                     <h1>istifadəçi reytinqi</h1>
@@ -82,92 +87,50 @@
                             <div>
                                 <div class="reting-info">
                                     <ul>
-                                        <li>
-                                            <a href="#" class="rtg-img">
-                                                <img src="" alt="">
-                                                <span>1</span>
-                                            </a>
-                                            <a href="#">Lorem Ipsum</a>
-                                            <span class="rtg-num">100 xal</span>
-                                        </li>
-                                        <li>
-                                            <a href="#" class="rtg-img">
-                                                <img src="" alt="">
-                                                <span>2</span>
-                                            </a>
-                                            <a href="#">Lorem Ipsum</a>
-                                            <span class="rtg-num">100 xal</span>
-                                        </li>
-                                        <li>
-                                            <a href="#" class="rtg-img">
-                                                <img src="" alt="">
-                                                <span>3</span>
-                                            </a>
-                                            <a href="#">Lorem Ipsum</a>
-                                            <span class="rtg-num">100 xal</span>
-                                        </li>
-                                        <li>
-                                            <a href="#" class="rtg-img">
-                                                <img src="" alt="">
-                                                <span>4</span>
-                                            </a>
-                                            <a href="#">Lorem Ipsum</a>
-                                            <span class="rtg-num">100 xal</span>
-                                        </li>
-                                        <li>
-                                            <a href="#" class="rtg-img">
-                                                <img src="" alt="">
-                                                <span>5</span>
-                                            </a>
-                                            <a href="#">Lorem Ipsum</a>
-                                            <span class="rtg-num">100 xal</span>
-                                        </li>
+                                        @{var count = 0;}
+                                        @foreach (User usr in ViewBag.user_reytinq)
+                                        {
+                                            count++;
+                                            if (count <= 5)
+                                            {
+                                                <li>
+                                                    <div class="rtg-img">
+                                                        <div class="rtg-img-n">
+                                                            <span>@count</span>
+                                                        </div>
+                                                        
+                                                    </div>
+                                                    <a class="rtg-name">@usr.fullname</a>
+                                                    <span class="rtg-num">@usr.reytinq xal</span>
+                                                </li>
+                                            }
+
+                                        }
                                     </ul>
                                 </div>
                             </div>
                             <div>
                                 <div class="reting-info">
                                     <ul>
-                                        <li>
-                                            <a href="#" class="rtg-img">
-                                                <img src="" alt="">
-                                                <span>6</span>
-                                            </a>
-                                            <a href="#">Lorem Ipsum</a>
-                                            <span class="rtg-num">100 xal</span>
-                                        </li>
-                                        <li>
-                                            <a href="#" class="rtg-img">
-                                                <img src="" alt="">
-                                                <span>7</span>
-                                            </a>
-                                            <a href="#">Lorem Ipsum</a>
-                                            <span class="rtg-num">100 xal</span>
-                                        </li>
-                                        <li>
-                                            <a href="#" class="rtg-img">
-                                                <img src="" alt="">
-                                                <span>8</span>
-                                            </a>
-                                            <a href="#">Lorem Ipsum</a>
-                                            <span class="rtg-num">100 xal</span>
-                                        </li>
-                                        <li>
-                                            <a href="#" class="rtg-img">
-                                                <img src="" alt="">
-                                                <span>9</span>
-                                            </a>
-                                            <a href="#">Lorem Ipsum</a>
-                                            <span class="rtg-num">100 xal</span>
-                                        </li>
-                                        <li>
-                                            <a href="#" class="rtg-img">
-                                                <img src="" alt="">
-                                                <span>10</span>
-                                            </a>
-                                            <a href="#">Lorem Ipsum</a>
-                                            <span class="rtg-num">100 xal</span>
-                                        </li>
+                                       @{var count6 = 0;}
+                                    @foreach (User usr in ViewBag.user_reytinq)
+                                    {
+                                        count6++;
+                                        if (count6 >= 6)
+                                        {
+                                            <li>
+                                                <div class="rtg-img">
+                                                    <div class="rtg-img-n">
+                                                        <span>@count6</span>
+                                                    </div>
+
+                                                </div>
+                                                <a class="rtg-name">@usr.fullname</a>
+                                                <span class="rtg-num">@usr.reytinq xal</span>
+                                            </li>
+                                        }
+
+                                    }
                                     </ul>
                                 </div>
                             </div>

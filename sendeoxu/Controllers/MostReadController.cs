@@ -13,7 +13,10 @@ namespace sendeoxu.Controllers
         private FirstProjectEntities db = new FirstProjectEntities();
         public ActionResult Index()
         {
+            ViewBag.mostread = db.Sources.OrderByDescending(s => s.read_count).Take(10);
             ViewBag.category = db.Categories.ToList();
+            ViewBag.catname = db.Categories.ToList();
+            ViewBag.user_reytinq = db.Users.OrderByDescending(u => u.reytinq).Take(10);
             return View();
         }
     }

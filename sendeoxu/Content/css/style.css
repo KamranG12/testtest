@@ -16,6 +16,7 @@
 @font-face {
   font-family: BebasNeue-Bold;
   src: url(../fonts/BebasNeue-Bold.ttf); }
+
 ol,
 ul {
   list-style: none; }
@@ -30,6 +31,15 @@ li {
 
 a {
   text-decoration: none; }
+a:hover {
+    text-decoration: none;
+}
+a:focus{
+    outline:0;
+    outline-offset: 0;
+    text-decoration: none;
+}
+
 
 ol,
 ul {
@@ -42,6 +52,8 @@ li {
   border: 0;
   font-size: 100%;
   vertical-align: baseline; }
+
+
 
 a {
   text-decoration: none; }
@@ -107,15 +119,77 @@ header .header-upper .profil {
   /*width: 100px;*/
   float: right;
   margin-top: 25px; }
+
   @media screen and (max-width: 320px) {
     header .header-upper .profil {
-      margin: 10px 0; } }
+      margin: 10px 0; }
+    .navbar-nav{
+        margin:0;
+    }
+  
+    .navbar-form{
+        border:none;
+        padding:0;
+    }
+    .btn-search-nav{
+        margin-left:5px;
+    }
+
+    .profil{
+        padding-right:15%;
+    }
+ 
+  }
   @media screen and (max-width: 480px) {
     header .header-upper .profil {
-      margin: 10px 0; } }
+      margin: 10px 0; }
+    .navbar-nav {
+        margin: 0;
+    }
+
+
+    .navbar-form {
+        border: none;
+        padding: 0;
+    }
+
+    .btn-search-nav {
+        margin-left: 5px;
+    }
+
+    .profil {
+        padding-right: 26%;
+    }
+  }
   @media screen and (max-width: 768px) {
     header .header-upper .profil {
-      margin: 10px 0; } }
+      margin: 10px 0; }
+    .navbar-nav {
+        margin: 0;
+    }
+
+    
+    .navbar-form {
+        border: none;
+        padding: 0;
+    }
+
+    .btn-search-nav {
+        margin-left: 5px;
+    }
+
+  }
+#btn-profil .dropdown-menu{
+      top:80%;
+      text-align:center;
+      padding:5px 10px;
+  }
+
+#btn-profil:hover .dropdown-menu {
+    display:block;
+}
+
+  
   header .header-upper .profil #btn-profil {
     padding: 11px 20px;
     line-height: 24px;
@@ -194,19 +268,75 @@ header .header-upper #profil-form {
         font-size: 23px;
     }
 
+
+.nav-ul {
+    padding-top:8px;
+}
+.navbar-collapse{
+    padding-left:0;
+    padding-right:0;
+}
 .home {
-  background: #ffae11;
-  height: 70px;
-  width: 70px;
-  text-align: center;
-  padding-top: 20px;
-  font-size: 26px; }
+    background: #ffae11;
+    height: 70px;
+    width: 70px;
+    text-align: center;
+    padding-top: 20px;
+    font-size: 26px;
+}
   .home i {
     color: white; }
+.nav-ul li {
+    padding-left:60px;
+}
+.nav-ul li a {
+    font-size: 18px;
+}
 
-.nav-menu li a {
-  padding: 22px 25px 22px 25px;
-  font-size: 18px; }
+.nav .btn-default:hover {
+    color: white;
+    background-color: #ffae11;
+    border-color: #ffae11;
+    outline:none;
+}
+
+.nav .btn-default:focus {
+    color: white;
+    outline:none;
+    background-color: #ffae11;
+    border-color: #ffae11;
+}
+
+/*responsive nav*/
+@media screen and (max-width: 1199px) {
+
+    .nav-ul li {
+        padding-left: 20px;
+    }
+
+
+    .content .categories h1{
+        font-size:20px;
+    }
+}
+
+@media screen and (max-width: 990px) {
+
+    .nav-ul li {
+        padding-left: 15px;
+        /*float:none;*/
+    }
+        .nav-ul li a {
+            font-size: 15px;
+            padding: 15px 6px;
+        }
+
+
+    .content .categories h1 {
+        font-size: 20px;
+    }
+}
+
 
 .DarkTangerine {
   color: #ffae11;
@@ -284,7 +414,7 @@ header .header-upper #profil-form {
           margin: 15px auto; } }
     .content .categories ul li {
       border-bottom: 1px solid #E8E8E8;
-      padding: 5px 0; }
+      padding: 5px 8px; }
       .content .categories ul li:last-child {
         border-bottom: none; }
       .content .categories ul li a {
@@ -305,7 +435,13 @@ header .header-upper #profil-form {
       border-bottom: 1px solid #FFAE11;
       padding-bottom: 5px; }
     .content .section-center .source {
-      padding-bottom: 25px; }
+        border-bottom: 1px solid gray;
+      padding-bottom: 25px;
+    }
+.content .section-center .source:last-child {
+    border-bottom: none;
+
+}
       .content .section-center .source .source-text-header ul li {
         display: inline-block;
         font-size: 10px;
@@ -339,6 +475,7 @@ header .header-upper #profil-form {
           font-family: Roboto-Regular; }
         .content .section-center .source .text-body a {
           float: right;
+          padding-top: 20px;
           color: #FFAE11; }
     .content .section-center .source-pagination {
       text-align: center;
@@ -380,30 +517,30 @@ header .header-upper #profil-form {
         .content .user-reting .reting-slider .owl-dots .active {
           background: #28395E; }
       .content .user-reting .reting-slider .reting-info {
-        margin-top: 20px;
+        margin-top: 35px;
         padding: 10px; }
         .content .user-reting .reting-slider .reting-info ul li {
           margin: 0 0 20px 0;
           border-bottom: 1px solid #E8E8E8;
-          height: 85px; }
+          height: 75px; }
           .content .user-reting .reting-slider .reting-info ul li .rtg-img {
             position: relative;
             float: left; }
-            .content .user-reting .reting-slider .reting-info ul li .rtg-img img {
-              width: 70px;
-              height: 70px;
-              margin-right: 10px; }
-            .content .user-reting .reting-slider .reting-info ul li .rtg-img span {
-              position: absolute;
-              bottom: 0;
-              left: 0;
-              background: #FFAE11;
-              color: #fff;
-              text-align: center;
-              width: 20px;
-              height: 20px;
-              font-size: 11px;
-              padding: 3px 0 3px 0; }
+            .rtg-img .rtg-img-n{
+                width:25px;
+                height:60px;
+
+                margin-right:20px;
+                background: #FFAE11;
+                    display: flex;
+    align-items: center;
+    justify-content: center;
+            }
+           .rtg-img .rtg-img-n span {
+                    color:white;
+                    font-size: 25px;
+                }
+            
           .content .user-reting .reting-slider .reting-info ul li a {
             display: block;
             line-height: 18px;
@@ -412,7 +549,8 @@ header .header-upper #profil-form {
           .content .user-reting .reting-slider .reting-info ul li .rtg-num {
             line-height: 18px;
             font-size: 16px;
-            color: #28395E; }
+            color: #28395E;
+          }
 
 footer {
   background: #28395E;
@@ -473,12 +611,16 @@ footer {
   outline: none; }
   .scroll-top:before {
     font-family: FontAwesome;
-    content: "\f106";
+    content: "\f062";
     outline: none; }
   .scroll-top:hover {
     color: white;
     background: #28395E;
     text-decoration: none; }
+    .scroll-top a:focus {
+        outline: none;
+     
+    }
 
 .about-body {
   padding: 30px;
@@ -502,11 +644,16 @@ footer {
 }
     .qaynaq .qaynaq-body .qaynaq-info.form-horizontal .form-group .qaynaq-text .btn-default {
       margin-top: 15px; }
+    .qaynaq .qaynaq-body .form-horizontal .form-group {
+    margin-left:0;
+    margin-right:0;
+    }
 
 .qaynaq-read {
-  padding: 30px;
-  background: #fff;
-  border: 1px solid #E8E8E8; }
+    padding: 30px;
+    background: #fff;
+    border: 1px solid #E8E8E8;
+}
   .qaynaq-read .qaynaq-read-body {
     margin-bottom: 20px; }
     .qaynaq-read .qaynaq-read-body ul li {
@@ -651,6 +798,7 @@ footer {
           font-family: Roboto-Regular; }
         .most-read-ten .mostTen-body .mostTen .mostTen-text-body a {
           float: right;
+          margin-top:15px;
           color: #FFAE11; }
 
 .angular-content {
@@ -1252,5 +1400,9 @@ footer {
     .sql-content .sql-pagination .pagination > .active > span {
       background-color: #FFAE11;
       border-color: #FFAE11; }
+
+.whitout_url{
+    cursor: pointer;
+}
 
 /*# sourceMappingURL=style.css.map */

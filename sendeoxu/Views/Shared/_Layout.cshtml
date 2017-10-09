@@ -2,16 +2,39 @@
 <html lang="az">
 
 <head>
-    <title>sendeoxu.az</title>
+    <title>@ViewBag.Title</title>
     <meta charset="UTF-8">
     <!--Favicon-->
     <link rel="shorcut icon" type="image/png" href="#">
     <link href="~/Content/css/font-awesome.css" rel="stylesheet">
-    <!-- Responsive -->
+
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    
+    <meta name="author" content="Kamran, Polad">
+    <meta name="robots" content="index,follow">
+    <meta name="robots" content="all">
+    <meta name="handheldfriendly" content="true">
+    <meta name="googlebot" content="index,follow,all">
+    <meta name="keywords" content="sendeoxu, sendeoxu.az, html, css, javascript, jquery, asp.net, java, php">
+    <meta name="title" content="sendeoxu.az">
+    <meta name="description" content="sendeoxu">
+
+    <meta property="og:url" content="http://sendeoxu.az">
+    <meta property="og:title" content="sendeoxu.az">
+    <meta property="og:description" content="sendeoxu">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="http://bumeranq.org">
+    <meta property="og:title" content="Bumeranq.org">
+    <meta property="og:description" content="Fərqli istək sahibləri və onlara dəstək verə biləcək insanları bir araya toplayan online platforma.">
+    <meta property="og:type" content="website">
+    @*<meta property="og:image" content="">*@
+    <meta property="og:site_name" content="sendeoxu.az">
+ 
     <!--owl carusel-->
     <link rel="stylesheet" href="~/Content/css/owl.carousel.min.css">
     <!-- Bootstrap -->
+
     <link href="~/Content/css/bootstrap.css" rel="stylesheet">
     <!-- Stylesheets -->
     <link href="~/Content/css/style.css" rel="stylesheet">
@@ -24,81 +47,79 @@
         <div class="header-upper">
             <div class="container">
                 <div class="row">
-                    <div class="col-md-4">
-                        <!--Logo-->
-                        <div class="logo">
-                            <a href="@Url.Action("index","Home")"><img src="~/Content/img/logo.png" alt="sendeoxu.az"></a>
-                        </div>
+    <div class="col-md-4">
+        <!--Logo-->
+        <div class="logo">
+            <a href="../../home/index"><img src="~/Content/img/logo.png" alt="sendeoxu.az"></a>
+        </div>
+    </div>
+    <div class="col-md-offset-6 col-md-2">
+    @if (Session["user"] != null)
+    {
+
+            <!-- profil -->
+        <div class="profil">
+            <div id="btn-profil">
+                <span>
+                    <p>@Session["user_name"]</p>
+                </span>
+
+                <ul class="dropdown-menu">
+                    <li><a href="@Url.Action("Logout","User")">Çıxış</a></li>
+                </ul>
+            </div>
+        </div>
+    }
+    else
+    {
+                <!-- profil -->
+                <div class="profil">
+                    <div id="btn-profil" class="btn-profil1">
+                        <span>
+                            <p>Profil</p>
+                        </span>
                     </div>
-                        <div class="col-md-offset-5 col-md-2">
-                            <!-- profil -->
-                            <div class="profil">
-                                <div id="btn-profil">
-                                    <span>
-                                        @if (Session["user"] != null)
-                                        {
-                                            <p>@Session["user_name"]</p>
-                                        }
-                                        else {
-                                            <p>Profil</p>
-                                        }
-                                                    
-                                                    </span>
-                
-                                                </div>
-                
-                                            </div>
-                
-                                            <!-- The Modal -->
-                
-                                            <div id="profil-Modal" class="modal">
-                                <!-- Modal content -->
-                                <div class="row">
-                                    <div class="col-md-offset-3 col-md-6">
-                                        <div class="modal-content">
-                                            <span class="close"><i class="fa fa-times" aria-hidden="true"></i></span>
-                                            <!--profil form daxil ol, qeydiyyat  -->
-                                            <div id="profil-form">
-                                                <!-- sign in  -->
-                                                <div class="sign-in">
-                                                    <form class="form-horizontal" action="@Url.Action("Login","User")">
-                                                        <div class="form-group">
-                                                            <div class="col-sm-12">
-                                                                <input type="email" name="email" class="form-control" id="inputEmail3" placeholder="Email">
-                                                            </div>
-                                                        </div>
-                                                        <div class="form-group">
-                                                            <div class="col-sm-12">
-                                                                <input type="password" name="password" class="form-control" id="inputPassword3" placeholder="Şifrə">
-                                                            </div>
-                                                        </div>
-                                                        <div id="message-reg"></div>
-                                                        <div class="form-group">
-                                                            <div class="col-sm-10">
-                                                                <div class="checkbox">
-                                                                    <label>
-                                                                        <input type="checkbox"> Yadda saxla
-                                                                    </label>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="form-group">
-                                                            <div class="col-sm-12">
-                                                                <button type="submit" id="login" class="btn btn-default">Daxil olun</button>
-                                                            </div>
-                                                        </div>
-                                                    </form>
-                                                </div>
-                                                <div class="sign-up">
-                                                    <a class="btn btn-default" href="@Url.Action("index","registration")" role="button">Qeydiyyat</a>
-                                                </div>
-                                            </div>
+                </div>
+                }
+        <div id="profil-Modal" class="modal">
+            <!-- Modal content -->
+            <div class="row">
+                <div class="col-md-offset-3 col-md-6">
+                    <div class="modal-content">
+                        <span class="close"><i class="fa fa-times" aria-hidden="true"></i></span>
+                        <!--profil form daxil ol, qeydiyyat  -->
+                        <div id="profil-form">
+                            <!-- sign in  -->
+                            <div class="sign-in">
+                                <form class="form-horizontal" action="@Url.Action("Login","User")">
+                                    <p id="message-reg" style="color:red"></p>
+                                    <div class="form-group">
+                                        <div class="col-sm-12">
+                                            <input type="email" name="email" class="form-control" id="inputEmail3" placeholder="Email">
                                         </div>
                                     </div>
-                                </div>
+                                    <div class="form-group">
+                                        <div class="col-sm-12">
+                                            <input type="password" name="password" class="form-control" id="inputPassword3" placeholder="Şifrə">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-sm-12">
+                                            <button type="submit" id="login" class="btn btn-default">Daxil olun</button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="sign-up">
+                                <a class="btn btn-default" href="@Url.Action("index","registration")" role="button">Qeydiyyat</a>
                             </div>
                         </div>
                     </div>
+                </div>
+            </div>
+        </div>
+        </div>
+                </div>
             </div>
         </div>
 
@@ -111,31 +132,40 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand home" href="@Url.Action("index","home")"><i class="fa fa-home" aria-hidden="true"></i></a>
+                    <a class="navbar-brand home" href="../../home/index/?page=1"><i class="fa fa-home" aria-hidden="true"></i></a>
+                    <ul>
+                        <li class="response320">
+
+                        </li>
+                    </ul>
                 </div>
                 <div class="collapse navbar-collapse" id="myNavbar">
-                    <ul class="nav navbar-nav nav-menu">
+                    @*class="nav navbar-nav nav-menu"*@
+                    <ul class="nav navbar-nav nav-menu nav-ul">
+                        
                         <li><a href="@Url.Action("index","MostRead")" class="ColorWhite">Ən çox oxunan onluq</a></li>
                         <li><a href="@Url.Action("index","About")" class="ColorWhite">Haqqımızda</a></li>
-                        <li><a href="@if(Session["user"] != null)
+                        @if (Session["user"] != null)
                         {
-                            @Url.Action("index","Qaynaq")
+                            <li><a href="@Url.Action("index","Qaynaq")" class="DarkTangerine">QAYNAQ GÖNDƏRİN</a></li>
                         }
                         else
                         {
-                            @Url.Action("index","home")
+                            <li><a class="DarkTangerine whitout_url">QAYNAQ GÖNDƏRİN</a></li>
                         }
-
-                        " class="DarkTangerine">QAYNAQ GÖNDƏRİN</a></li>
+                        
                         <li><a href="@Url.Action("index","registration")" class="DarkTangerine">QEYDİYYAT</a></li>
+
+
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
-                        <form class="navbar-form navbar-left form-nav">
-                            <div class="input-group">
-                                @*<input type="text" class="form-control input-form" id="search" placeholder="Saytda axtarış" required>*@
-                                <div class="container">
+                        <li>
+                            <form class="navbar-form navbar-left form-nav">
+                                <div class="input-group">
                                     <div class="row">
-                                        <button type="button" class="btn btn-primary" data-toggle="modal" id="searchclcbtn" data-target=".bs-example-modal-lg">Axtarış</button>
+                                        <button type="button" class="btn btn-default btn-search-nav" data-toggle="modal" id="searchclcbtn" data-target=".bs-example-modal-lg">
+                                            <i class="fa fa-search" aria-hidden="true"></i>
+                                        </button>
                                         <div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
                                             <div class="modal-dialog modal-lg">
                                                 <div class="modal-content">
@@ -144,25 +174,19 @@
                                                             <input id="search" type="text" class="form-control input-lg" placeholder="Search" />
                                                             <span class="input-group-btn">
                                                                 <button class="btn btn-info btn-lg" type="button">
-                                                                    <i class="glyphicon glyphicon-search"></i>
+                                                                    <i class="fa fa-search"></i>
                                                                 </button>
                                                             </span>
                                                         </div>
-                                                        <ul class="list-group" id="srcfromdata">
-                                                        </ul>
+                                                        <ul class="list-group" id="srcfromdata"></ul>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="input-group-btn">
-                                    <button class="btn btn-default btn-search-nav" type="submit">
-                                        <i class="fa fa-search" aria-hidden="true"></i>
-                                    </button>
-                                </div>
-                            </div>
-                        </form>
+                            </form>
+                        </li>
                     </ul>
 
                 </div>
@@ -179,7 +203,7 @@
                         <div class="col-md-10">
                             <!--Copyright-->
                             <div class="copyright">
-                                <p>Copyright & All Right Researved <span class="cop">© 2017</span></p>
+                                <p><span class="cop">© 2017</span> Polad & Kamran</p>
                             </div>
                         </div>
                         <div class="col-md-2">

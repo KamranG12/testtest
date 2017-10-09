@@ -1,5 +1,9 @@
+﻿
+$(document).ready(function () {
 
-$(document).ready(function(){
+  
+
+
     //reting user slider
     $('.owl-carousel').owlCarousel({
         responsive: {
@@ -15,7 +19,10 @@ $(document).ready(function(){
         }
     });
 
-  
+    $(".whitout_url").click(function () {
+        $('#profil-Modal').css({ display: "block" });
+        $('#message-reg').text('Zəhmət olmasa login və parolunuzu daxil edin və ya qeydiyyatdan keçin.');
+    })
 
     //select picker
     $('#ex-search').picker({ search: true });
@@ -54,6 +61,11 @@ $(document).ready(function(){
             $(window).scroll(toggleScrollToTop);
 
             toggleScrollToTop();
+
+            link.on("click", function () {
+                $('body').animate({ scrollTop: 0 }, 1000);
+                $('html').animate({ scrollTop: 0 }, 1000);
+            });
         });
     })();
     // scroll top end
@@ -61,18 +73,23 @@ $(document).ready(function(){
 
 //profil sign-in start
 // Get the modal
-var modal = document.getElementById('profil-Modal');
+var modal = document.getElementById("profil-Modal");
 // Get the button that opens the modal
-var btn = document.getElementById("btn-profil");
+//var btn = document.getElementsByClassName("btn-profil1");
 // Get the <span> element that closes the modal
 var span = document.getElementsByClassName("close")[0];
 // When the user clicks the button, open the modal 
-btn.onclick = function() {
-    modal.style.display = "block";
-}
+//btn.onclick = function() {
+//    modal.style.display = "block";
+//    console.log("test")
+//}
+$(".btn-profil1").click(function () {
+    $("#profil-Modal").css({ display: "block" });
+})
 // When the user clicks on <span> (x), close the modal
 span.onclick = function() {
     modal.style.display = "none";
+    $('#message-reg').text('');
 }
 // When the user clicks anywhere outside of the modal, close it
 window.onclick = function(event) {

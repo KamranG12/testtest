@@ -1,59 +1,19 @@
 ﻿
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Qeydiyyat | sendeoxu.az";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-<section class="content">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-8">
-                <div class="registration">
-                    <div id="box">
-                        <div id="content">
-                            <div id="box_left">
-                                <h2>Qeydiyyat</h2>
-                                <div id="login">
-                                    <p>Hesabınızdakı məlumatları daxil edin:</p>
-                                    <form class="form-horizontal" method="post" action="@Url.Action("Registration","User")">
-                                        <div class="form-group">
-                                            <div class="col-md-10">
-                                                <div class="input-group">
-                                                    <span class="input-group-addon"><i class="fa fa-user" aria-hidden="true"></i></span>
-                                                    <input type="text" data-validation="required" name="fullname" id="fulname" class="form-control" placeholder="Adınız,Soyadınız" aria-describedby="basic-addon1">
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <div class="col-md-10">
-                                                <div class="input-group">
-                                                    <span class="input-group-addon"><i class="fa fa-envelope" aria-hidden="true"></i></span>
-                                                    <input type="email" name="email" data-validation="server email" data-validation-url="@Url.Action("checkEmail","user")" class="form-control" id="regist_email" placeholder="e-mail">
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <div class="col-md-10">
-                                                <div class="input-group">
-                                                    <span class="input-group-addon"><i class="fa fa-key" aria-hidden="true"></i></span>
-                                                    <input type="password" data-validation="strength" data-validation-strength="2" name="password" class="form-control" id="new_password" placeholder="Şifrə">
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <div class="col-md-10">
-                                                <div class="input-group">
-                                                    <span class="input-group-addon"><i class="fa fa-key" aria-hidden="true"></i></span>
-                                                    <input type="password" class="form-control" name="confirm" id="confirm" placeholder="Şifrəni təkrar daxil edin" />
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div id="message_confirm"></div>
-                                        <div class="form-group">
-                                            <div class="col-md-10">
-                                                <button type="submit" class="btn btn-default" id="registr">Qeydiyyatı tamamlayın</button>
-                                            </div>
-                                        </div>
-                                    </form>
+@if (Session["user"] != null)
+{
+    <section class="content">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8">
+                    <div class="registration">
+                        <div id="box">
+                            <div id="content">
+                                <div id="box_left">
+                                    <h2>Siz artıq qeydiyyatdan keçmisiniz</h2>
                                 </div>
                             </div>
                         </div>
@@ -61,6 +21,70 @@
                 </div>
             </div>
         </div>
-    </div>
-</section>
+    </section>
+}
+else
+{
+    <section class="content">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8">
+                    <div class="registration">
+                        <div id="box">
+                            <div id="content">
+                                <div id="box_left">
+                                    <h2>Qeydiyyat</h2>
+                                    <div id="login">
+                                        <p>Hesabınızdakı məlumatları daxil edin:</p>
+                                        <form class="form-horizontal" method="post" action="@Url.Action("Registration","User")">
+                                            <div class="form-group">
+                                                <div class="col-md-10">
+                                                    <div class="input-group">
+                                                        <span class="input-group-addon"><i class="fa fa-user" aria-hidden="true"></i></span>
+                                                        <input type="text" data-validation="required" name="fullname" id="fulname" class="form-control" placeholder="Adınız,Soyadınız" aria-describedby="basic-addon1">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <div class="col-md-10">
+                                                    <div class="input-group">
+                                                        <span class="input-group-addon"><i class="fa fa-envelope" aria-hidden="true"></i></span>
+                                                        <input type="email" name="email" data-validation="server email" data-validation-url="@Url.Action("checkEmail","user")" class="form-control" id="regist_email" placeholder="e-mail">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <div class="col-md-10">
+                                                    <div class="input-group">
+                                                        <span class="input-group-addon"><i class="fa fa-key" aria-hidden="true"></i></span>
+                                                        <input type="password" data-validation="strength" data-validation-strength="2" name="password" class="form-control" id="new_password" placeholder="Şifrə">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <div class="col-md-10">
+                                                    <div class="input-group">
+                                                        <span class="input-group-addon"><i class="fa fa-key" aria-hidden="true"></i></span>
+                                                        <input type="password" class="form-control" name="confirm" id="confirm" placeholder="Şifrəni təkrar daxil edin" />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div id="message_confirm"></div>
+                                            <div class="form-group">
+                                                <div class="col-md-10">
+                                                    <button type="submit" class="btn btn-default" id="registr">Qeydiyyatı tamamlayın</button>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+}
+
 

@@ -17,7 +17,9 @@ namespace sendeoxu.Areas.Hidden.Controllers
         // GET: Hidden/Sources
         public ActionResult Index()
         {
-            var sources = db.Sources.Include(s => s.User);
+            if (Session["admin"] != null)
+            {
+                var sources = db.Sources.Include(s => s.User);
             var say = 0;
             ViewBag.x = db.Sources.Where(s => s.allow == false).ToList();
             foreach (Source source in ViewBag.x)
@@ -26,6 +28,11 @@ namespace sendeoxu.Areas.Hidden.Controllers
             }
             Session["new_source"] = say;
             return View(sources.ToList());
+            }
+            else
+            {
+                return RedirectToAction("login", "admin");
+            }
         }
 
         // GET: Hidden/Sources/Details/5
@@ -40,14 +47,28 @@ namespace sendeoxu.Areas.Hidden.Controllers
             {
                 return HttpNotFound();
             }
-            return View(source);
+            if (Session["admin"] != null)
+            {
+                return View(source);
+            }
+            else
+            {
+                return RedirectToAction("login", "admin");
+            }
         }
 
         // GET: Hidden/Sources/Create
         public ActionResult Create()
         {
-            ViewBag.user_id = new SelectList(db.Users, "id", "fullname");
+            if (Session["admin"] != null)
+            {
+                ViewBag.user_id = new SelectList(db.Users, "id", "fullname");
             return View();
+            }
+            else
+            {
+                return RedirectToAction("login", "admin");
+            }
         }
 
         // POST: Hidden/Sources/Create
@@ -80,14 +101,22 @@ namespace sendeoxu.Areas.Hidden.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.user_id = new SelectList(db.Users, "id", "fullname", source.user_id);
+            if (Session["admin"] != null)
+            {
+                ViewBag.user_id = new SelectList(db.Users, "id", "fullname", source.user_id);
             return View(source);
+            }
+            else
+            {
+                return RedirectToAction("login", "admin");
+            }
         }
 
         // POST: Hidden/Sources/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
+        [ValidateInput(false)]
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "id,title,text,date,read_count,user_id,kateqoriya_id,allow")] Source source)
         {
@@ -113,7 +142,14 @@ namespace sendeoxu.Areas.Hidden.Controllers
             {
                 return HttpNotFound();
             }
-            return View(source);
+            if (Session["admin"] != null)
+            {
+                return View(source);
+            }
+            else
+            {
+                return RedirectToAction("login", "admin");
+            }
         }
 
         // POST: Hidden/Sources/Delete/5
